@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<title>secret</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<style>
+body {
+	margin: 0 auto; padding: 0 1em; max-width: 25em;
+	font-size: 110%; font-family: "Helvetica Neue", sans-serif;
+}
+input, button, pre {
+	display: block; margin: 1em 0; box-sizing: border-box; width: 100%;
+	font-size: 100%;
+}
+input {
+	padding: .4em;
+	border: 1px solid #888; border-radius: .2em;
+}
+button {
+	padding: .4em;
+	border: none; border-radius: .2em;
+	color: white; background-color: #2980b9;
+	cursor: pointer;
+}
+button:active {
+	background-color: #1970a9;
+}
+pre {
+	padding: .6em;
+	color: #333; background-color: #eee;
+	border-radius: .2em;
+	word-wrap: auto; white-space: pre-wrap;
+}
+	</style>
+</head>
+<body>
+	<input type="password" id="secret" placeholder="Enter the password."/>
+	<button id="decrypt">Decrypt</button>
+	<pre id="output"></pre>
+	<script>{{sjcl}}</script>
+	<script>
+document.getElementById('output').innerHTML = 'Ready.'
+document.getElementById('decrypt').addEventListener('click', function () {
+
+	var secret = document.getElementById('secret').value
+	if (secret.length === 0)
+		return document.getElementById('output').innerHTML = 'Please enter the password.'
+
+	var encrypted = '{{encrypted-text}}'
+	if (encrypted.length === 0 || encrypted.substring(2, 16) === 'encrypted-text')
+		return document.getElementById('output').innerHTML = 'There has been an error.'
+
+	try {
+		document.getElementById('output').innerHTML = sjcl.decrypt(secret, encrypted)
+	} catch (error) {
+		document.getElementById('output').innerHTML = 'Wrong password.'
+	}
+
+}, false)
+	</script>
+</body>
+</html>

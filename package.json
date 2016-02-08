@@ -8,6 +8,7 @@
 	"repository":        "git://github.com/derhuerst/html-fault.git",
 	"license":           "ISC",
 	"dependencies": {
+		"sjcl":         "^1.0.3",
 	},
 	},
 	"scripts": {
