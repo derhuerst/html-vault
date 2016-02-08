@@ -1,0 +1,15 @@
+{
+	"name":              "html-fault",
+	"description":       "Store a secret securely in a standalone HTML file.",
+	"version":           "0.1.0",
+	"keywords":          ["secret", "encrypt", "decrypt", "aes", "html", "share"],
+	"author":            "Jannis R <mail@jannisr.de>",
+	"homepage":          "https://github.com/derhuerst/html-fault",
+	"repository":        "git://github.com/derhuerst/html-fault.git",
+	"license":           "ISC",
+	"dependencies": {
+	},
+	},
+	"scripts": {
+	}
+}
