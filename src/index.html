@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>html-vault</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="Store a secret securely in a file.">
+	<meta name="keywords" content="secret, encrypt, decrypt, aes, html, share">
+	<meta name="author" content="Jannis R">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<style>
+body {
+	margin: 0 auto; padding: 0 1em; max-width: 25em;
+	font-size: 110%; font-family: "Helvetica Neue", sans-serif;
+}
+input, button, textarea {
+	display: block; margin: 1em 0; box-sizing: border-box; width: 100%;
+	font-size: 100%;
+}
+input, textarea {
+	padding: .4em;
+	border: 1px solid #888; border-radius: .2em;
+}
+button {
+	padding: .4em;
+	border: none; border-radius: .2em;
+	color: white; background-color: #2980b9;
+	cursor: pointer;
+}
+button:active {
+	background-color: #1970a9;
+}
+textarea {
+	min-height: 7em;
+	font-family: "Helvetica Neue", sans-serif;
+}
+pre {
+	padding: .6em;
+	color: #333; background-color: #eee;
+	border-radius: .2em;
+	word-wrap: auto; white-space: pre-wrap;
+}
+
+#output {
+	display: none;
+}
+	</style>
+</head>
+<body>
+	<textarea id="message" placeholder="Enter your secret message." name="message">This is a test.</textarea>
+	<input type="password" id="secret" placeholder="Enter a safe password." value="password"/>
+	<button id="encrypt">Encrypt</button>
+	<p><a id="output" href="#">Encrypted File</a></p>
+	<pre id="log"></pre>
+	<script>{{downloadjs}}</script>
+	<script>{{sjcl}}</script>
+	<script>
+document.getElementById('log').innerHTML = 'Ready.'
+document.getElementById('encrypt').addEventListener('click', function () {
+
+	var message = document.getElementById('message').value
+	if (message.length === 0)
+		return document.getElementById('log').innerHTML = 'Please enter a message.'
+
+	var secret = document.getElementById('secret').value
+	if (secret.length === 0)
+		return document.getElementById('log').innerHTML = 'Please enter a password.'
+
+	try {
+		encrypted = sjcl.encrypt(secret, message)
+	} catch (error) {
+		return document.getElementById('log').innerHTML = 'An error occured.'
+	}
+
+	var bundle = '{{bundle-html}}'
+	if (bundle.length === 0 || bundle.substring(2, 16) === 'bundle-html')
+		return document.getElementById('log').innerHTML = 'There has been an error.'
+
+	bundle = decodeURIComponent(bundle)
+	bundle = bundle.replace('{{encrypted-text}}', encrypted)
+	// bundle = encodeURIComponent(bundle)
+	// document.getElementById('output').href = 'data:text/html,' + bundle
+	// document.getElementById('output').style.display = 'inline-block'
+	// document.getElementById('log').innerHTML = 'Done.'
+	download(bundle, 'secret.html', 'text/html')
+}, false)
+	</script>
+</body>
+</html>

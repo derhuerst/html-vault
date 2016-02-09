@@ -9,6 +9,7 @@
 	"license":           "ISC",
 	"dependencies": {
 		"sjcl":         "^1.0.3",
+		"downloadjs":   "^1.4.2"
 	},
 	},
 	"scripts": {
