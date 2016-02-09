@@ -10,3 +10,8 @@ notifications:
   email: false
 
 sudo: false
+
+branches:
+  only:
+    - master
+    - gh-pages
