@@ -21,6 +21,7 @@ input, button, textarea {
 	font-size: 100%;
 }
 input, textarea { padding: .4em; border: 1px solid #888; border-radius: .2em; }
+input.error, textarea.error { border-color: #c0392b; }
 button {
 	padding: .4em;
 	border: none; border-radius: .2em;
@@ -28,55 +29,65 @@ button {
 	cursor: pointer;
 }
 button:active { background-color: #1970a9; }
+button.error { background-color: #c0392b; }
 textarea { min-height: 7em; font-family: "Helvetica Neue", sans-serif; }
-pre {
-	padding: .6em;
-	color: #333; background-color: #eee;
-	border-radius: .2em;
-	word-wrap: auto; white-space: pre-wrap;
-}
 
-#output { display: none; }
+#hint {
+	display: none;
+	padding: .4em .5em; border-radius: .2em;
+	color: white; background-color: #c0392b;
+}
 	</style>
 </head>
 <body>
 	<p>Using this service, you can generate a file that contains a secret. The secret can only be obtained using the password that you provided.</p>
+	<p id="hint"></p>
 	<textarea id="message" placeholder="Enter your secret message." name="message"></textarea>
 	<input type="password" id="password" placeholder="Pick a password that is long and hard-to-guess."/>
 	<p>Once you saved the file, you can send it using whatever tool you prefer. Remember to transmit the password separately.<a href="#notes">*</a></p>
-	<button id="submit">🔒 Encrypt my secret</button>
-	<pre id="log"></pre>
+	<button id="submit">Encrypt my secret</button>
 	<script>{{downloadjs}}</script>
 	<script>{{sjcl}}</script>
 	<script>
-document.getElementById('log').innerHTML = 'Ready.'
-document.getElementById('encrypt').addEventListener('click', function () {
+var bundle = '{{bundle-html}}'
+if (bundle.length === 0 || bundle.substring(2, 16) === 'bundle-html')
+	showError(form.submit, 'An error occured.')
+bundle = decodeURIComponent(bundle)
+	</script>
+	<script>
+var form = {
+	message: document.getElementById('message'),
+	password: document.getElementById('password'),
+	submit: document.getElementById('submit')
+}
+var hint = document.getElementById('hint')
 
-	var message = document.getElementById('message').value
-	if (message.length === 0)
-		return document.getElementById('log').innerHTML = 'Please enter a message.'
+var resetForm = function () {
+	form.message.classList.remove('error')
+	form.password.classList.remove('error')
+	form.submit.classList.remove('error')
+	hint.style.display = 'none'
+}
+var showError = function (element, message) {
+	element.classList.add('error')
+	hint.innerHTML = message
+	hint.style.display = 'block'
+}
 
-	var secret = document.getElementById('secret').value
-	if (secret.length === 0)
-		return document.getElementById('log').innerHTML = 'Please enter a password.'
+form.submit.addEventListener('click', function () {
+	resetForm()
 
-	try {
-		encrypted = sjcl.encrypt(secret, message)
-	} catch (error) {
-		return document.getElementById('log').innerHTML = 'An error occured.'
-	}
+	if (form.message.value.length === 0)
+		return showError(form.message, 'Please enter a message.')
+	if (form.password.value.length === 0)
+		return showError(form.password, 'Please enter a password.')
 
-	var bundle = '{{bundle-html}}'
-	if (bundle.length === 0 || bundle.substring(2, 16) === 'bundle-html')
-		return document.getElementById('log').innerHTML = 'There has been an error.'
+	try { encrypted = sjcl.encrypt(form.password.value, form.message.value) }
+	catch (error) { return showError(form.submit, 'An error occured.') }
 
-	bundle = decodeURIComponent(bundle)
-	bundle = bundle.replace('{{encrypted-text}}', encrypted)
-	// bundle = encodeURIComponent(bundle)
-	// document.getElementById('output').href = 'data:text/html,' + bundle
-	// document.getElementById('output').style.display = 'inline-block'
-	// document.getElementById('log').innerHTML = 'Done.'
-	download(bundle, 'secret.html', 'text/html')
+	html = bundle.replace('{{encrypted-text}}', encrypted)
+	download(html, 'secret.html', 'text/html')
+	form.password.value = ''
 }, false)
 	</script>
 </body>
