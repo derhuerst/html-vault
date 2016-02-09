@@ -11,7 +11,10 @@
 		"sjcl":         "^1.0.3",
 		"downloadjs":   "^1.4.2"
 	},
+	"devDependencies": {
+		"js-string-escape": "^1"
 	},
 	"scripts": {
+		"build":         "node build.js"
 	}
 }
