@@ -37,6 +37,8 @@ textarea { min-height: 7em; font-family: "Helvetica Neue", sans-serif; }
 	padding: .4em .5em; border-radius: .2em;
 	color: white; background-color: #c0392b;
 }
+#notes { margin-top: 3em; color: #555; font-size: 90%; }
+#notes::before { content: "*"; padding-right: .3em; }
 	</style>
 </head>
 <body>
@@ -44,8 +46,9 @@ textarea { min-height: 7em; font-family: "Helvetica Neue", sans-serif; }
 	<p id="hint"></p>
 	<textarea id="message" placeholder="Enter your secret message." name="message"></textarea>
 	<input type="password" id="password" placeholder="Pick a password that is long and hard-to-guess."/>
-	<p>Once you saved the file, you can send it using whatever tool you prefer. Remember to transmit the password separately.<a href="#notes">*</a></p>
+	<p>Once you have saved the file, send it using whatever tool you want. Remember to transmit the password separately.<a href="#notes">*</a></p>
 	<button id="submit">Encrypt my secret</button>
+	<p id="notes">The encryption is only as secure as the weakest link in the chain. Don't send the file and password over the same channel. If you're serious about security, don't send the password at all, but give it to the receiver manually.</p>
 	<script>{{downloadjs}}</script>
 	<script>{{sjcl}}</script>
 	<script>
