@@ -15,6 +15,8 @@
 		"js-string-escape": "^1"
 	},
 	"scripts": {
-		"build":         "node build.js"
+		"build":         "node build.js",
+		"ssh": "ssh -i ./scaleway root@static.jannisr.de",
+		"deploy": "./deploy"
 	}
 }
