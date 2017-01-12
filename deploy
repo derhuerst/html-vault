@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rsync -rav --delete -e 'ssh -i ./.scaleway' \
+rsync -rav --delete \
 	--exclude '.*' \
 	--exclude node_modules \
-	. root@static.jannisr.de:/var/www/html-vault.jannisr.de/
+	. root@html-vault.jannisr.de:/var/www/html-vault.jannisr.de/

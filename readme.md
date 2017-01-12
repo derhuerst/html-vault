@@ -7,6 +7,8 @@ Inspired by [kiss by *Massimo Santini*](https://github.com/mapio/kiss).
 [![build status](https://img.shields.io/travis/derhuerst/html-vault.svg)](https://travis-ci.org/derhuerst/html-vault)
 [![dependency status](https://img.shields.io/david/derhuerst/html-vault.svg)](https://david-dm.org/derhuerst/html-vault#info=dependencies)
 [![dev dependency status](https://img.shields.io/david/dev/derhuerst/html-vault.svg)](https://david-dm.org/derhuerst/html-vault#info=devDependencies)
+![ISC-licensed](https://img.shields.io/github/license/derhuerst/html-vault.svg)
+[![chat on gitter](https://badges.gitter.im/derhuerst.svg)](https://gitter.im/derhuerst)
 
 
 

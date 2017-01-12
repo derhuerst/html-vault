@@ -1,16 +1,11 @@
-language: node_js
-
-node_js:
-  - "stable"
-
-script:
-  - "npm run build"
-
-notifications:
-  email: false
-
 sudo: false
-
+language: node_js
+node_js:
+  - 'stable'
+  - '7'
+  - '6'
+script:
+  - 'npm run build'
 branches:
   only:
     - master

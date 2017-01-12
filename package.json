@@ -16,7 +16,7 @@
 	},
 	"scripts": {
 		"build":         "node build.js",
-		"ssh": "ssh -i ./scaleway root@static.jannisr.de",
+		"ssh": "ssh root@static.jannisr.de",
 		"deploy": "./deploy"
 	}
 }
