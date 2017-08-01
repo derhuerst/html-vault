@@ -8,11 +8,11 @@
 	"repository":        "git://github.com/derhuerst/html-fault.git",
 	"license":           "ISC",
 	"dependencies": {
-		"sjcl":         "^1.0.3",
-		"downloadjs":   "^1.4.2"
+		"downloadjs": "^1.4.7",
+		"sjcl": "^1.0.7"
 	},
 	"devDependencies": {
-		"js-string-escape": "^1"
+		"js-string-escape": "^1.0.1"
 	},
 	"scripts": {
 		"build":         "node build.js",
