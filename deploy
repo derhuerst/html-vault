@@ -1,6 +1,0 @@
-#!/bin/bash
-
-rsync -rav --delete \
-	--exclude '.*' \
-	--exclude node_modules \
-	. root@html-vault.jannisr.de:/var/www/html-vault.jannisr.de/

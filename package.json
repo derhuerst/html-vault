@@ -15,8 +15,6 @@
 		"js-string-escape": "^1.0.1"
 	},
 	"scripts": {
-		"build":         "node build.js",
-		"ssh": "ssh root@static.jannisr.de",
-		"deploy": "./deploy"
+		"build": "node build.js"
 	}
 }
