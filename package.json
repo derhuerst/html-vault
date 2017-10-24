@@ -17,6 +17,7 @@
 	"bugs": "https://github.com/derhuerst/todo-name/issues",
 	"license": "ISC",
 	"dependencies": {
+		"sodium-encryption": "^1.2.3"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.0",
