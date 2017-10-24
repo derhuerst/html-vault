@@ -6,7 +6,7 @@
 	<title>html-vault</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="Store a secret securely in a file.">
-	<meta name="keywords" content="secret, encrypt, decrypt, aes, html, share">
+	<meta name="keywords" content="secret, encrypt, decrypt, sodium, html, share">
 	<meta name="author" content="Jannis R">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="profile" href="http://osprotocol.com">
@@ -59,49 +59,6 @@ textarea { min-height: 7em; font-family: "Helvetica Neue", sans-serif; }
 	<p id="notes">The encryption is only as secure as the weakest link in the chain. Don't send the file and password over the same channel. If you're serious about security, don't send the password at all, but give it to the receiver manually.</p>
 	<!-- https://github.com/github/octicons/blob/0640e0c0e555a02e4628b96d5e72ef3328f27214/svg/mark-github.svg -->
 	<p id="github"><a href="https://github.com/derhuerst/html-vault"><svg height="32" width="32" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"/></svg></a></p>
-	<script>{{downloadjs}}</script>
-	<script>{{sjcl}}</script>
-	<script>
-var bundle = '{{bundle-html}}'
-if (bundle.length === 0 || bundle.substring(2, 16) === 'bundle-html')
-	showError(form.submit, 'An error occured.')
-bundle = decodeURIComponent(bundle)
-	</script>
-	<script>
-var form = {
-	message: document.getElementById('message'),
-	password: document.getElementById('password'),
-	submit: document.getElementById('submit')
-}
-var hint = document.getElementById('hint')
-
-var resetForm = function () {
-	form.message.classList.remove('error')
-	form.password.classList.remove('error')
-	form.submit.classList.remove('error')
-	hint.style.display = 'none'
-}
-var showError = function (element, message) {
-	element.classList.add('error')
-	hint.innerHTML = message
-	hint.style.display = 'block'
-}
-
-form.submit.addEventListener('click', function () {
-	resetForm()
-
-	if (form.message.value.length === 0)
-		return showError(form.message, 'Please enter a message.')
-	if (form.password.value.length === 0)
-		return showError(form.password, 'Please enter a password.')
-
-	try { encrypted = sjcl.encrypt(form.password.value, form.message.value) }
-	catch (error) { return showError(form.submit, 'An error occured.') }
-
-	html = bundle.replace('{{encrypted-text}}', encrypted)
-	download(html, 'secret.html', 'text/html')
-	form.password.value = ''
-}, false)
-	</script>
+	<script src="bundle.js"></script>
 </body>
 </html>

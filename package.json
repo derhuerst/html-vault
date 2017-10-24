@@ -1,20 +1,32 @@
 {
-	"name":              "html-fault",
-	"description":       "Store a secret securely in a standalone HTML file.",
-	"version":           "0.1.0",
-	"keywords":          ["secret", "encrypt", "decrypt", "aes", "html", "share"],
-	"author":            "Jannis R <mail@jannisr.de>",
-	"homepage":          "https://github.com/derhuerst/html-fault",
-	"repository":        "git://github.com/derhuerst/html-fault.git",
-	"license":           "ISC",
+	"private": true,
+	"name": "html-vault",
+	"description": "Store a secret securely in a standalone HTML file.",
+	"version": "0.1.0",
+	"keywords": [
+		"secret",
+		"encrypt",
+		"decrypt",
+		"sodium",
+		"html",
+		"share"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"homepage": "https://derhuerst.github.io/html-vault/",
+	"repository": "derhuerst/html-vault",
+	"bugs": "https://github.com/derhuerst/todo-name/issues",
+	"license": "ISC",
 	"dependencies": {
-		"downloadjs": "^1.4.7",
-		"sjcl": "^1.0.7"
 	},
 	"devDependencies": {
-		"js-string-escape": "^1.0.1"
+		"babel-core": "^6.26.0",
+		"babel-preset-env": "^1.6.1",
+		"babelify": "^8.0.0",
+		"browserify": "^14.5.0",
+		"uglifyify": "^4.0.4"
 	},
 	"scripts": {
-		"build": "node build.js"
+		"dev": "browserify src/index.js >dist/bundle.js",
+		"build": "browserify -g [ babelify --presets env ] -g uglifyify src/index.js >dist/bundle.js"
 	}
 }
