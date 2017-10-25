@@ -1,6 +1,8 @@
 'use strict'
 
 const encryption = require('sodium-encryption')
+const generateHTML = require('self-decrypting-html-page')
+const {saveAs} = require('file-saver')
 
 const hintEl = document.getElementById('hint')
 const messageEl = document.getElementById('message')
@@ -38,7 +40,10 @@ submitEl.addEventListener('click', () => {
 		keyEl.innerText = 'This is your key:\n' + key.toString('hex')
 		keyEl.classList.remove('hidden')
 
-		console.log('encrypted', encrypted) // todo
+		const html = new Blob([generateHTML(nonce, encrypted)], {
+			type: 'text/html;charset=utf-8'
+		})
+		saveAs(html, 'encrypted-secret.html')
 	} catch (err) {
 		console.error(err)
 		return showError(submitEl, 'An error occured.')

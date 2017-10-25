@@ -17,6 +17,8 @@
 	"bugs": "https://github.com/derhuerst/todo-name/issues",
 	"license": "ISC",
 	"dependencies": {
+		"file-saver": "^1.3.3",
+		"self-decrypting-html-page": "^0.2.0",
 		"sodium-encryption": "^1.2.3"
 	},
 	"devDependencies": {
