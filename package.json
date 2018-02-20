@@ -25,11 +25,12 @@
 		"babel-core": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
 		"babelify": "^8.0.0",
-		"browserify": "^14.5.0",
-		"uglifyify": "^4.0.4"
+		"browserify": "^16.1.0",
+		"envify": "^4.1.0",
+		"uglifyify": "^4.0.5"
 	},
 	"scripts": {
 		"dev": "browserify src/index.js >dist/bundle.js",
-		"build": "browserify -g [ babelify --presets env ] -g uglifyify src/index.js >dist/bundle.js"
+		"build": "env NODE_ENV=production browserify -g [ babelify --presets env ] -g envify -g uglifyify src/index.js >dist/bundle.js"
 	}
 }
