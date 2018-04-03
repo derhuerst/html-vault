@@ -24,6 +24,7 @@
 	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
+		"babel-preset-minify": "^0.3.0",
 		"babelify": "^8.0.0",
 		"browserify": "^16.1.1",
 		"envify": "^4.1.0",
