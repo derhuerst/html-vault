@@ -22,16 +22,16 @@
 		"sodium-encryption": "^1.2.3"
 	},
 	"devDependencies": {
-		"babel-core": "^6.26.0",
-		"babel-preset-env": "^1.6.1",
-		"babel-preset-minify": "^0.4.3",
-		"babelify": "^8.0.0",
-		"browserify": "^16.1.1",
+		"@babel/core": "^7.1.6",
+		"@babel/preset-env": "^7.1.6",
+		"babel-preset-minify": "^0.5.0",
+		"babelify": "^10.0.0",
+		"browserify": "^16.2.3",
 		"envify": "^4.1.0",
 		"uglifyify": "^5.0.1"
 	},
 	"scripts": {
 		"dev": "browserify src/index.js >dist/bundle.js",
-		"build": "env NODE_ENV=production browserify -g [ babelify --presets env ] -g envify -g uglifyify src/index.js >dist/bundle.js"
+		"build": "env NODE_ENV=production browserify -g [ babelify --presets [@babel/preset-env] ] -g envify -g uglifyify src/index.js >dist/bundle.js"
 	}
 }
