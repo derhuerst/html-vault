@@ -18,7 +18,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"file-saver": "^2.0.1",
-		"self-decrypting-html-page": "^1.0.1",
+		"self-decrypting-html-page": "^2.0.1",
 		"sodium-encryption": "^1.2.3"
 	},
 	"devDependencies": {
