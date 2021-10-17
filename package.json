@@ -16,9 +16,12 @@
 	"repository": "derhuerst/html-vault",
 	"bugs": "https://github.com/derhuerst/todo-name/issues",
 	"license": "ISC",
+	"engines": {
+		"node": ">=14"
+	},
 	"dependencies": {
 		"file-saver": "^2.0.1",
-		"self-decrypting-html-page": "^2.0.1",
+		"self-decrypting-html-page": "^3.0.0",
 		"sodium-encryption": "^1.2.3"
 	},
 	"devDependencies": {
