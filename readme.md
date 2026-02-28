@@ -9,9 +9,6 @@ Uses [`self-decrypting-html-page`](https://github.com/derhuerst/self-decrypting-
 
 Inspired by [kiss by *Massimo Santini*](https://github.com/mapio/kiss).
 
-[![build status](https://img.shields.io/travis/derhuerst/html-vault.svg)](https://travis-ci.org/derhuerst/html-vault)
-[![dependency status](https://img.shields.io/david/derhuerst/html-vault.svg)](https://david-dm.org/derhuerst/html-vault#info=dependencies)
-[![dev dependency status](https://img.shields.io/david/dev/derhuerst/html-vault.svg)](https://david-dm.org/derhuerst/html-vault#info=devDependencies)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/html-vault.svg)
 [![support me via GitHub Sponsors](https://img.shields.io/badge/support%20me-donate-fa7664.svg)](https://github.com/sponsors/derhuerst)
 [![chat with me on Twitter](https://img.shields.io/badge/chat%20with%20me-on%20Twitter-1da1f2.svg)](https://twitter.com/derhuerst)
